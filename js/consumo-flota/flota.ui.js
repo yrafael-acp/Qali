@@ -79,26 +79,19 @@ const FlotaUI = {
      * @param {number} tA - total asignado
      * @param {number} tC - total consumido
      */
-    actualizarResumen(tA, tC) {
-        const saldo = tA - tC;
-        const efic = tA > 0 ? ((tC / tA) * 100).toFixed(1) : 0;
+    actualizarResumen(resumen) {
+    document.getElementById('resumenSemanal').textContent =
+        (parseFloat(resumen.totalSemanal) || 0).toFixed(2);
 
-        document.getElementById('resumenAsignado').textContent = tA.toFixed(2);
-        document.getElementById('resumenConsumido').textContent = tC.toFixed(2);
-        document.getElementById('resumenSaldo').textContent = saldo.toFixed(2);
-        document.getElementById('resumenEficiencia').textContent = efic + '%';
+    document.getElementById('resumenMensual').textContent =
+        (parseFloat(resumen.totalMensual) || 0).toFixed(2);
 
-        // Actualizar el ring SVG de eficiencia
-        const arc = document.getElementById('efficiencyArc');
-        if (arc) {
-            const pct = Math.min(parseFloat(efic), 100);
-            arc.setAttribute('stroke-dasharray', `${pct} 100`);
-        }
+    document.getElementById('resumenUnidades').textContent =
+        parseInt(resumen.unidadesConConsumo || 0, 10);
 
-        // Color del saldo
-        const saldoEl = document.getElementById('resumenSaldo');
-        saldoEl.style.color = saldo < 0 ? '#f87171' : '';
-    },
+    document.getElementById('resumenPromedio').textContent =
+        (parseFloat(resumen.promedioSemanal) || 0).toFixed(2);
+},
 
     // ── CONTADOR DE FILAS ─────────────────────────
 
