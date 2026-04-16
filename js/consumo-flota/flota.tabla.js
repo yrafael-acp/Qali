@@ -17,6 +17,12 @@ const FlotaTabla = {
     cuerpo.innerHTML = '';
 
     if (!datos || datos.length === 0) {
+        FlotaUI.actualizarResumen({
+            totalSemanal: 0,
+            totalMensual: 0,
+            unidadesConConsumo: 0,
+            promedioSemanal: 0
+        });
         FlotaUI.actualizarContador(0);
         return;
     }
@@ -39,13 +45,39 @@ const FlotaTabla = {
     });
 
     if (datosFiltrados.length === 0) {
+        FlotaUI.actualizarResumen({
+            totalSemanal: 0,
+            totalMensual: 0,
+            unidadesConConsumo: 0,
+            promedioSemanal: 0
+        });
         FlotaUI.actualizarContador(0);
         return;
     }
 
+    let totalSemanal = 0;
+    let totalMensual = 0;
+    let unidadesConConsumo = 0;
+
     datosFiltrados.forEach(g => {
+        const semana = parseFloat(g.totalSemana || 0);
+        const mes = parseFloat(g.totalMes || 0);
+
+        totalSemanal += semana;
+        totalMensual += mes;
+        if (semana > 0) unidadesConConsumo++;
+
         const fila = this._buildRow(g);
         cuerpo.insertAdjacentHTML('beforeend', fila);
+    });
+
+    const promedioSemanal = unidadesConConsumo > 0 ? totalSemanal / unidadesConConsumo : 0;
+
+    FlotaUI.actualizarResumen({
+        totalSemanal,
+        totalMensual,
+        unidadesConConsumo,
+        promedioSemanal
     });
 
     FlotaUI.actualizarContador(datosFiltrados.length);
