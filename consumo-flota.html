@@ -105,68 +105,43 @@
 
     <!-- KPI CARDS -->
     <div class="kpi-grid">
-        <div class="kpi-card kpi-blue">
-            <div class="kpi-icon"><i class="fas fa-tachometer-alt"></i></div>
-            <div class="kpi-body">
-                <span class="kpi-label">GLN ASIGNADO</span>
-                <span id="resumenAsignado" class="kpi-value">0.00</span>
-            </div>
-            <div class="kpi-bar"></div>
+    <div class="kpi-card kpi-blue">
+        <div class="kpi-icon"><i class="fas fa-calendar-week"></i></div>
+        <div class="kpi-body">
+            <span class="kpi-label">CONSUMO SEMANAL</span>
+            <span id="resumenSemanal" class="kpi-value">0.00</span>
         </div>
-        <div class="kpi-card kpi-orange">
-            <div class="kpi-icon"><i class="fas fa-fire"></i></div>
-            <div class="kpi-body">
-                <span class="kpi-label">GLN CONSUMIDO</span>
-                <span id="resumenConsumido" class="kpi-value">0.00</span>
-            </div>
-            <div class="kpi-bar"></div>
-        </div>
-        <div class="kpi-card kpi-green">
-            <div class="kpi-icon"><i class="fas fa-battery-three-quarters"></i></div>
-            <div class="kpi-body">
-                <span class="kpi-label">SALDO DISP.</span>
-                <span id="resumenSaldo" class="kpi-value">0.00</span>
-            </div>
-            <div class="kpi-bar"></div>
-        </div>
-        <div class="kpi-card kpi-purple">
-            <div class="kpi-icon"><i class="fas fa-chart-pie"></i></div>
-            <div class="kpi-body">
-                <span class="kpi-label">% EFICIENCIA</span>
-                <span id="resumenEficiencia" class="kpi-value">0%</span>
-            </div>
-            <div class="kpi-efficiency-ring">
-                <svg viewBox="0 0 36 36" class="efficiency-svg">
-                    <circle cx="18" cy="18" r="15.9" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="3"/>
-                    <circle id="efficiencyArc" cx="18" cy="18" r="15.9" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="3" stroke-dasharray="0 100" stroke-linecap="round" transform="rotate(-90 18 18)"/>
-                </svg>
-            </div>
-        </div>
+        <div class="kpi-bar"></div>
     </div>
 
-    <!-- RADAR DE INACTIVOS -->
-    <div class="radar-panel">
-        <div class="radar-header">
-            <div>
-                <h3 class="radar-title">
-                    <span class="radar-dot"></span>
-                    Radar de Unidades Sin Consumo
-                </h3>
-                <p id="rangoAuditoria" class="radar-subtitle">Selecciona un periodo para escanear el historial</p>
-            </div>
-            <div class="radar-toggle">
-                <button id="btnAuditMes" onclick="auditarInactivos('mes')" class="radar-btn radar-btn-active">ESTE MES</button>
-                <button id="btnAuditAnio" onclick="auditarInactivos('anio')" class="radar-btn">TODO EL AÑO</button>
-            </div>
+    <div class="kpi-card kpi-orange">
+        <div class="kpi-icon"><i class="fas fa-calendar-alt"></i></div>
+        <div class="kpi-body">
+            <span class="kpi-label">CONSUMO MENSUAL</span>
+            <span id="resumenMensual" class="kpi-value">0.00</span>
         </div>
-        <div id="listaInactivos" class="radar-grid">
-            <div class="radar-empty">
-                <i class="fas fa-satellite-dish"></i>
-                <p>Haz clic en <b>ESTE MES</b> o <b>TODO EL AÑO</b> para auditar consumos de SAP.</p>
-            </div>
-        </div>
+        <div class="kpi-bar"></div>
     </div>
 
+    <div class="kpi-card kpi-green">
+        <div class="kpi-icon"><i class="fas fa-truck"></i></div>
+        <div class="kpi-body">
+            <span class="kpi-label">UNIDADES CON CONSUMO</span>
+            <span id="resumenUnidades" class="kpi-value">0</span>
+        </div>
+        <div class="kpi-bar"></div>
+    </div>
+
+    <div class="kpi-card kpi-purple">
+        <div class="kpi-icon"><i class="fas fa-divide"></i></div>
+        <div class="kpi-body">
+            <span class="kpi-label">PROMEDIO SEMANAL</span>
+            <span id="resumenPromedio" class="kpi-value">0.00</span>
+        </div>
+        <div class="kpi-bar"></div>
+    </div>
+</div>
+    
     <!-- TABLA PRINCIPAL -->
     <div class="table-panel">
         <!-- Toolbar -->
