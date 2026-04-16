@@ -165,65 +165,6 @@ const FlotaModales = {
         XLSX.writeFile(wb, `Reporte_Ordenes_ACP_${fecha}.xlsx`);
     },
 
-    // ── MODAL EDITAR DOTACIÓN ─────────────────────
-
-    abrirEditarFlota(placa, dotActual) {
-        const rol = sessionStorage.getItem('rolGrifo');
-        if (rol === 'READ') {
-            FlotaUI.toast('⛔ No tienes permisos para modificar dotaciones.', 'error');
-            return;
-        }
-        if (!FlotaUtils.tienePermisoEspecial()) return;
-
-        document.getElementById('editPlaca').value = placa;
-        document.getElementById('editDotacion').value = dotActual;
-        this._open('modalEditarFlota');
-    },
-
-    cerrarModalEditarFlota() { this._close('modalEditarFlota'); },
-
-    async guardarExcepcionSemanal() {
-        const btn = document.querySelector('#modalEditarFlota .btn-modal-primary');
-        const placa = document.getElementById('editPlaca').value;
-        const nuevaDot = parseFloat(document.getElementById('editDotacion').value);
-        const placaNorm = FlotaUtils.normalizarPlaca(placa);
-        const semana = document.getElementById('selectorSemanas').value;
-
-        if (isNaN(nuevaDot)) {
-            FlotaUI.toast('⚠️ Ingrese un monto válido.', 'warning');
-            return;
-        }
-
-        this._bloquearBtn(btn, 'APLICANDO...');
-        FlotaUI.setSyncIndicator(true, 'APLICANDO EXCEPCIÓN SEMANAL...');
-
-        try {
-            const infoActual = FlotaState.ESTRUCTURA_FLOTA.find(g => g.p.includes(placa));
-            const dotAnterior = infoActual ? infoActual.a : 0;
-            const userLog = sessionStorage.getItem('usuarioGrifo') || sessionStorage.getItem('sessionGrifo');
-
-            await FlotaAPI.saveExcepcion(semana, placaNorm, nuevaDot, userLog);
-            await FlotaUtils.sleep(FlotaConfig.DELAY_POST_SAVE);
-
-            const diff = nuevaDot - dotAnterior;
-            if (diff > 0) {
-                FlotaUI.toast(`✅ ${placa}: +${diff.toFixed(2)} GLN asignados extra.`, 'success');
-            } else {
-                FlotaUI.toast(`✅ Dotación ajustada para ${placa}.`, 'success');
-            }
-
-            this.cerrarModalEditarFlota();
-            FlotaUI.setSyncIndicator(true, 'ACTUALIZANDO TABLA...');
-            await sincronizarDesdeNube();
-
-        } catch (e) {
-            FlotaUI.toast('❌ Error al conectar con el servidor.', 'error');
-        } finally {
-            this._liberarBtn(btn);
-            FlotaUI.setSyncIndicator(false);
-        }
-    },
-
     // ── MODAL CONFIGURACIÓN ───────────────────────
 
     abrirModalConfig() {
@@ -266,7 +207,7 @@ const FlotaModales = {
             </div>`).join('');
     },
 
-    async function registrarAltaMaestro() {
+    async registrarAltaMaestro() {
     const placa = (document.getElementById('newPlaca').value || '').trim().toUpperCase();
     const responsable = (document.getElementById('newResp').value || '').trim().toUpperCase();
     const area = (document.getElementById('newArea').value || '').trim().toUpperCase();
@@ -287,15 +228,16 @@ const FlotaModales = {
 
         if (resp.status === 'OK') {
             FlotaUI.toast('Vehículo registrado correctamente.', 'success');
-            cerrarModalConfig();
-            await cargarFlotaSemana();
+            this.cerrarModalConfig();
+            await sincronizarDesdeNube();
         } else {
             FlotaUI.toast(resp.message || 'No se pudo registrar.', 'error');
         }
     } catch (e) {
+        console.error(e);
         FlotaUI.toast('Error al registrar vehículo.', 'error');
     }
-}
+},
 
     async ejecutarBajaMaestro(placa) {
         if (!FlotaUtils.tienePermisoEspecial()) return;
