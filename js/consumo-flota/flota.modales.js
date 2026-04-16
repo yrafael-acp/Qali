@@ -266,39 +266,36 @@ const FlotaModales = {
             </div>`).join('');
     },
 
-    async registrarAltaMaestro() {
-        if (!FlotaUtils.tienePermisoEspecial()) return;
+    async function registrarAltaMaestro() {
+    const placa = (document.getElementById('newPlaca').value || '').trim().toUpperCase();
+    const responsable = (document.getElementById('newResp').value || '').trim().toUpperCase();
+    const area = (document.getElementById('newArea').value || '').trim().toUpperCase();
+    const fechaAlta = document.getElementById('newFechaAlta').value;
 
-        const placa = document.getElementById('newPlaca').value.trim();
-        const fechaAlta = document.getElementById('newFechaAlta').value;
+    if (!placa || !responsable || !area || !fechaAlta) {
+        FlotaUI.toast('Completa todos los campos.', 'warning');
+        return;
+    }
 
-        if (!placa || !fechaAlta) {
-            FlotaUI.toast('Placa y Fecha de Alta son obligatorios.', 'warning');
-            return;
-        }
-
-        const data = {
+    try {
+        const resp = await FlotaAPI.insertarFlota({
             placa,
-            dotacion: document.getElementById('newDot').value,
-            idVinculo: document.getElementById('newIdVinculo').value,
-            responsable: document.getElementById('newResp').value,
-            area: document.getElementById('newArea').value,
-            fechaAlta,
-        };
+            responsable,
+            area,
+            fechaAlta
+        });
 
-        FlotaUI.setSyncIndicator(true, 'REGISTRANDO EN MAESTRO...');
-
-        try {
-            await FlotaAPI.insertarFlota(data);
-            FlotaUI.toast(`✅ Unidad ${placa.toUpperCase()} registrada exitosamente.`, 'success');
-            this.cerrarModalConfig();
-            await sincronizarDesdeNube();
-        } catch (e) {
-            FlotaUI.toast('❌ Error al registrar la unidad.', 'error');
-        } finally {
-            FlotaUI.setSyncIndicator(false);
+        if (resp.status === 'OK') {
+            FlotaUI.toast('Vehículo registrado correctamente.', 'success');
+            cerrarModalConfig();
+            await cargarFlotaSemana();
+        } else {
+            FlotaUI.toast(resp.message || 'No se pudo registrar.', 'error');
         }
-    },
+    } catch (e) {
+        FlotaUI.toast('Error al registrar vehículo.', 'error');
+    }
+}
 
     async ejecutarBajaMaestro(placa) {
         if (!FlotaUtils.tienePermisoEspecial()) return;
