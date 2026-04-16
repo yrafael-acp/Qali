@@ -1,7 +1,7 @@
 /* ============================================================
    CONFIGURACIÓN GLOBAL
 ============================================================ */
-const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzAgSTwLnbtEE9xcz_0JsXKAfCXlyyyiTwgA0bx5DueuJH6jFoSSDiogkzFFPAaDiammg/exec';
+const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzGCBucqQDnNE38hR8rtDqV4SGYMIWj7K43ueEuK3qhsNLwAYfBzqHodILpWVdW6_1XWA/exec';
 
 // Roles definidos localmente (la validación de clave va al servidor)
 const USER_ROLES = {
