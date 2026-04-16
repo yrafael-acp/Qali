@@ -57,23 +57,6 @@ const FlotaAPI = {
     },
 
     /**
-     * Guarda una excepción de dotación semanal
-     * @param {string} semana - fecha lunes ISO
-     * @param {string} placa - normalizada sin guiones
-     * @param {number} dotacion
-     * @param {string} userLog
-     */
-    async saveExcepcion(semana, placa, dotacion, userLog) {
-        return this.post({
-            action: 'saveExcepcion',
-            semana,
-            placa,
-            dotacion,
-            userLog: userLog || 'S/U',
-        });
-    },
-
-    /**
      * Guarda un despacho manual temporal
      * @param {string} placa
      * @param {string} fecha - yyyy-MM-dd
@@ -136,16 +119,6 @@ const FlotaAPI = {
      */
     async darBajaFlota(placa, fechaBaja) {
         return this.post({ action: 'updateFlota', placa, fechaBaja });
-    },
-
-    /**
-     * Audita unidades inactivas
-     * @param {'mes'|'anio'} tipo
-     * @param {string|number} anio
-     * @param {string|number} mes
-     */
-    async auditar(tipo, anio, mes) {
-        return this.get({ action: 'auditar', tipo, anio, mes });
     },
 
     /**
