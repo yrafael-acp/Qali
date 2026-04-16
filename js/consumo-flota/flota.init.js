@@ -23,42 +23,6 @@ async function sincronizarDesdeNube() {
     }
 }
 
-// ── AUDITORÍA RADAR ───────────────────────────────────────────
-
-async function auditarInactivos(rango) {
-    const textoRango = document.getElementById('rangoAuditoria');
-    const anio = document.getElementById('selectorAnio').value;
-    const selector = document.getElementById('selectorSemanas');
-
-    if (!selector.value) {
-        FlotaUI.toast('Selecciona una semana primero.', 'warning');
-        return;
-    }
-
-    const mesReferencia = selector.value.split('-')[1];
-    const nombresMeses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-
-    // Toggle botones activos
-    document.getElementById('btnAuditMes').className = `radar-btn ${rango === 'mes' ? 'radar-btn-active' : ''}`;
-    document.getElementById('btnAuditAnio').className = `radar-btn ${rango === 'anio' ? 'radar-btn-active' : ''}`;
-
-    textoRango.textContent = rango === 'mes'
-        ? `Auditando: ${nombresMeses[parseInt(mesReferencia) - 1]} ${anio}`
-        : `Auditando: Todo el año ${anio}`;
-
-    FlotaUI.radarLoading();
-
-    try {
-        const inactivos = await FlotaAPI.auditar(rango, anio, mesReferencia);
-        FlotaUI.renderRadarInactivos(inactivos);
-    } catch (e) {
-        document.getElementById('listaInactivos').innerHTML = `
-            <p style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-muted)">
-                Error al conectar con SAP.
-            </p>`;
-    }
-}
-
 // ── LIMPIEZA DE VALES ─────────────────────────────────────────
 
 async function limpiarValesManuales() {
