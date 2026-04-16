@@ -317,37 +317,30 @@
             </div>
 
             <div id="panelAltaConfig" class="hidden space-y-4">
-                <div class="form-row-2">
-                    <div class="form-group">
-                        <label class="form-label">Placa</label>
-                        <input type="text" id="newPlaca" class="form-input uppercase font-bold" placeholder="ABC-123">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Dotación (GLN)</label>
-                        <input type="number" id="newDot" class="form-input" placeholder="0.00">
-                    </div>
-                </div>
-                <div class="form-group form-group-highlight">
-                    <label class="form-label-blue"><i class="fas fa-link mr-1"></i>ID Vínculo (Saldo Compartido)</label>
-                    <input type="text" id="newIdVinculo" class="form-input uppercase" placeholder="Ej: LUIS MACHER">
-                    <p class="form-hint-blue">* Deja vacío para asignar un nuevo correlativo automático.</p>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Responsable</label>
-                    <input type="text" id="newResp" class="form-input uppercase" placeholder="NOMBRE DEL CONDUCTOR">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Área / Fundo</label>
-                    <input type="text" id="newArea" class="form-input uppercase" placeholder="EJ: CERRO LA PATA">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Fecha de Alta</label>
-                    <input type="date" id="newFechaAlta" class="form-input">
-                </div>
-                <button onclick="registrarAltaMaestro()" class="btn-modal-primary btn-green-full">
-                    <i class="fas fa-plus-circle mr-2"></i>GUARDAR EN MAESTRO
-                </button>
-            </div>
+    <div class="form-group">
+        <label class="form-label">Placa</label>
+        <input type="text" id="newPlaca" class="form-input uppercase font-bold" placeholder="ABC-123">
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Responsable</label>
+        <input type="text" id="newResp" class="form-input uppercase" placeholder="NOMBRE DEL CONDUCTOR">
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Área / Fundo</label>
+        <input type="text" id="newArea" class="form-input uppercase" placeholder="EJ: QALI">
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Fecha de Alta</label>
+        <input type="date" id="newFechaAlta" class="form-input">
+    </div>
+
+    <button onclick="registrarAltaMaestro()" class="btn-modal-primary btn-green-full">
+        <i class="fas fa-plus-circle mr-2"></i>GUARDAR EN MAESTRO
+    </button>
+</div>
         </div>
     </div>
 </div>
