@@ -7,15 +7,7 @@ const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzAgSTwLnbtEE9xcz_0
 const USER_ROLES = {
     "ERAFAEL":    "ADMIN",
     "CVILLANUEVA":"ADMIN",
-    "EURBINA":    "ADMIN",
-    "WCASTRO":    "ADMIN",
-    "ACERRUTI":   "ADMIN",
-    "LJUAREZ":    "READ",
-    "CGONZALES":  "READ",
-    "CORRILLO":   "READ",
-    "FFERNANDEZ": "READ",
-    "WNEYRA":     "READ",
-    "ASALAZAR":   "READ"
+    "JTAFUR":     "ADMIN"
 };
 
 let currentUser    = null;
