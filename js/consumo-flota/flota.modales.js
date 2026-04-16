@@ -360,10 +360,6 @@ function cerrarModalConsulta() { FlotaModales.cerrarModalConsulta(); }
 function ejecutarConsultaOrden() { FlotaModales.ejecutarConsultaOrden(); }
 function exportarConsultaExcel() { FlotaModales.exportarConsultaExcel(); }
 
-function abrirEditarFlota(p, d) { FlotaModales.abrirEditarFlota(p, d); }
-function cerrarModalEditarFlota() { FlotaModales.cerrarModalEditarFlota(); }
-function guardarExcepcionSemanal() { FlotaModales.guardarExcepcionSemanal(); }
-
 function abrirModalConfig() { FlotaModales.abrirModalConfig(); }
 function cerrarModalConfig() { FlotaModales.cerrarModalConfig(); }
 function cambiarTabConfig(t) { FlotaModales.cambiarTabConfig(t); }
