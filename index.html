@@ -236,46 +236,7 @@
                 </div>
                 <div class="chart-wrap"><canvas id="consumoChart"></canvas></div>
             </div>
-
-            <!-- FILTROS / INVENTARIO -->
-            <div style="margin-top:16px;">
-                <span class="field-label" style="font-size:.75rem; display:block; margin-bottom:4px;">📦 Inventario de Filtros</span>
-                <div class="filtros-grid">
-                    <div class="filtro-box">
-                        <span class="f-label">Tipo CF60</span>
-                        <span class="f-val" id="f60">0</span>
-                        <button class="btn btn-success btn-full btn-sm" onclick="gestionarFiltros('compra','cf60')">+ Ingreso</button>
-                    </div>
-                    <div class="filtro-box">
-                        <span class="f-label">Tipo CF100</span>
-                        <span class="f-val" id="f100">0</span>
-                        <button class="btn btn-success btn-full btn-sm" onclick="gestionarFiltros('compra','cf100')">+ Ingreso</button>
-                    </div>
-                </div>
-                <div id="alertaStockFiltros" style="margin-top:8px; font-size:.75rem; font-weight:700; text-align:center;"></div>
-            </div>
-        </div>
-
-        <!-- 3. PLAN TRIMESTRAL -->
-        <div class="card full-width">
-            <h3 class="card-title"><span class="icon">🔧</span> Plan Trimestral de Mantenimiento
-                <span style="font-size:.72rem; font-weight:400; color:var(--text-muted);">(alerta preventiva a los 85 días)</span>
-            </h3>
-            <div class="tbl-wrap">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Equipo</th>
-                            <th>Filtro</th>
-                            <th>Último Mant.</th>
-                            <th>Días Transcurridos</th>
-                            <th>Estado</th>
-                            <th id="thAccion" style="display:none;">Acción</th>
-                        </tr>
-                    </thead>
-                    <tbody id="mantoBody"></tbody>
-                </table>
-            </div>
+            
         </div>
 
         <!-- 4. HISTORIAL -->
