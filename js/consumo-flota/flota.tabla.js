@@ -112,12 +112,12 @@ const FlotaTabla = {
 
     return `
         <tr>
-            <td data-label="PLACA">
+           <td data-label="PLACA">
                 <div class="placa-wrap">
-                    <button onclick="FlotaModales.abrirEditarFlota('${placa}', 0)" class="placa-btn">
-                        <i class="fas fa-pencil-alt edit-icon"></i>${placa}
-                    </button>
-                    ${idHtml}
+                <span class="placa-btn" style="pointer-events:none; cursor:default;">
+                ${placa}
+                </span>
+                ${idHtml}
                 </div>
             </td>
             <td data-label="RESPONSABLE">
