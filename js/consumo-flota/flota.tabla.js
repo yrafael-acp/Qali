@@ -89,15 +89,9 @@ const FlotaTabla = {
      */
     _buildRow(g) {
     const placa = g.p[0];
-    const idVinculo = g.id || placa;
-    const esAdmin = sessionStorage.getItem('rolGrifo') === 'ADMIN';
 
     const labelBaja = (g.baja && g.baja !== 'null' && g.baja !== '')
         ? `<span class="badge-baja-label"><i class="fas fa-arrow-down"></i>BAJA</span>` : '';
-
-    const idHtml = esAdmin
-        ? `<div class="placa-id-ref">ID: ${idVinculo}</div>`
-        : '';
 
     const dias = ['L', 'M', 'Mi', 'J', 'V', 'S', 'D'];
     const diasHtml = dias.map(d => {
@@ -114,10 +108,9 @@ const FlotaTabla = {
         <tr>
            <td data-label="PLACA">
                 <div class="placa-wrap">
-                <span class="placa-btn" style="pointer-events:none; cursor:default;">
-                ${placa}
-                </span>
-                ${idHtml}
+                    <span class="placa-btn" style="pointer-events:none; cursor:default;">
+                        ${placa}
+                    </span>
                 </div>
             </td>
             <td data-label="RESPONSABLE">
