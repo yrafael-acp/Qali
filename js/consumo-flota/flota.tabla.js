@@ -1,6 +1,20 @@
-// Previous content up to line 97
+// Code before removing idHtml and its reference
 
-// Removed idHtml variable
+function someFunction() {
+    // Some code
+    // No reference to idHtml here
+    console.log('Function code remains intact');
+}
 
-// Previous content from line 101 onward
-// Replace reference of ${idHtml} and update the lines accordingly.
+// Removing the idHtml variable and its reference
+
+// function someFunctionWithIdHtml() {
+//    var idHtml = 'someValue';
+//   // Some code that uses idHtml
+// }
+
+// Continuing with rest of the code
+
+function anotherFunction() {
+    console.log('Another function code remains intact');
+}
